@@ -1,0 +1,31 @@
+const {
+
+    Log,
+
+    setToken
+
+} = require("./index");
+
+// Paste YOUR ACCESS TOKEN here
+
+setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJrYW5kdXJ1YWpheTgyMEBnbWFpbC5jb20iLCJleHAiOjE3ODI1MzkzMzIsImlhdCI6MTc4MjUzODQzMiwiaXNzIjoiQWZmb3JkIE1lZGljYWwgVGVjaG5vbG9naWVzIFByaXZhdGUgTGltaXRlZCIsImp0aSI6IjhjZDEyZTQ1LTJlYjYtNDkxNC05NmFlLTFmZjI1ZDViMGUwNiIsImxvY2FsZSI6ImVuLUlOIiwibmFtZSI6ImsgYWpheSIsInN1YiI6ImQzZWExYmFiLTA4ZDMtNDEwYS1iMWE3LWNjNjEzNWYyY2MxZSJ9LCJlbWFpbCI6ImthbmR1cnVhamF5ODIwQGdtYWlsLmNvbSIsIm5hbWUiOiJrIGFqYXkiLCJyb2xsTm8iOiIyM2hyMWEzMDI0IiwiYWNjZXNzQ29kZSI6ImFUa3licyIsImNsaWVudElEIjoiZDNlYTFiYWItMDhkMy00MTBhLWIxYTctY2M2MTM1ZjJjYzFlIiwiY2xpZW50U2VjcmV0IjoiSENkdEVqaGJDUmtyckdDVCJ9._i6ScZ9g3eRGWNJX_9Sm9S9GJa_uRL2e-QXrU0BZ3bw");
+
+async function test() {
+
+    const result = await Log(
+
+        "backend",
+
+        "info",
+
+        "handler",
+
+        "Testing logging middleware"
+
+    );
+
+    console.log(result);
+
+}
+
+test();
