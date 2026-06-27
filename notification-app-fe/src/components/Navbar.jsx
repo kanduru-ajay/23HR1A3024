@@ -1,19 +1,60 @@
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Avatar,
+} from "@mui/material";
+
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+
 function Navbar() {
   return (
-    <nav
-      style={{
-        background: "#1976d2",
-        color: "white",
-        padding: "15px 30px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
+    <AppBar
+      position="sticky"
+      elevation={2}
     >
-      <h2>AffordMed Notification System</h2>
+      <Toolbar>
 
-      <h3>Student Portal</h3>
-    </nav>
+        <NotificationsActiveIcon
+          sx={{
+            mr: 2,
+            fontSize: 35,
+          }}
+        />
+
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+          }}
+        >
+          AffordMed Notification System
+        </Typography>
+
+        <Box sx={{ flexGrow: 1 }} />
+
+        <Avatar
+          sx={{
+            bgcolor: "#fff",
+            color: "#1565c0",
+            mr: 2,
+          }}
+        >
+          S
+        </Avatar>
+
+        <Typography
+          variant="body1"
+          sx={{
+            fontWeight: 600,
+          }}
+        >
+          Student Portal
+        </Typography>
+
+      </Toolbar>
+    </AppBar>
   );
 }
 

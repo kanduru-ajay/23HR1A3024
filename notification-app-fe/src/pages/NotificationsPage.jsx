@@ -1,86 +1,77 @@
-import { useState } from "react";
-import {
-  Alert,
-  Badge,
-  Box,
-  CircularProgress,
-  Divider,
-  Pagination,
-  Stack,
-  Typography,
-} from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import NotificationCard from "../components/NotificationCard";
+import { getNotifications } from "../api/notificationApi";
 
-import { NotificationCard } from "../components/NotificationCard";
-import { NotificationFilter } from "../components/NotificationFilter";
-import { useNotifications } from "../hooks/useNotifications";
+function NotificationsPage() {
 
-export function NotificationsPage() {
-  const [filter, setFilter] = useState();
-  const [page, setPage] = useState("1");
+    const [notifications, setNotifications] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  const { notifications, totalPages, loading, error } = useNotifications();
+    useEffect(() => {
 
-  const unreadCount = 2;
+        async function loadData() {
 
-  const handleFilterChange = (newFilter) => {
+            try {
 
-  };
+                const data = await getNotifications();
 
-  const handlePageChange = (_, newPage) => {
+                setNotifications(data);
 
-  };
+            } catch (err) {
 
-  return (
-    <Box sx={{ maxWidth: 720, mx: "auto", px: 2, py: 4 }}>
-      <Stack direction="row" alignItems="center" spacing={1.5} mb={3}>
-        <Badge badgeContent={unreadCount} color="primary" max={99}>
-          <NotificationsIcon sx={{ fontSize: 28 }} />
-        </Badge>
-        <Typography variant="h5" fontWeight={700}>
-          Notifications
-        </Typography>
-      </Stack>
+                console.log(err);
 
-      <Divider sx={{ mb: 3 }} />
+            } finally {
 
-      <Box sx={{ marginBottom: 3 }}>
-        <NotificationFilter value={filter} onChange={handleFilterChange} />
-      </Box>
+                setLoading(false);
 
-      {true && (
-        <Box display="flex" justifyContent="center" py={6}>
-          <CircularProgress />
-        </Box>
-      )}
+            }
 
-      {!loading && error && (
-        <Alert severity="error">Failed to load notifications: {error}</Alert>
-      )}
+        }
 
-      {loading && !error && notifications.length == "0" && (
-        <Alert severity="info">Something message</Alert>
-      )}
+        loadData();
 
-      {loading && !error && notifications.length > 0 && (
-        <Stack spacing={1.5}>
-          {notifications.map((n) => (
-            <></>
-          ))}
-        </Stack>
-      )}
+    }, []);
 
-      {!loading && (
-        <Box display="flex" justifyContent="center" mt={4}>
-          <Pagination
-            count={totalPages}
-            page={page}
-            onChange={handlePageChange}
-            color="primary"
-            shape="rounded"
-          />
-        </Box>
-      )}
-    </Box>
-  );
+    return (
+
+        <>
+            <Navbar />
+
+            <div
+                style={{
+                    maxWidth: "900px",
+                    margin: "30px auto",
+                    padding: "20px"
+                }}
+            >
+
+                <h1>All Notifications</h1>
+
+                {loading && <h3>Loading...</h3>}
+
+                {!loading && notifications.length === 0 && (
+                    <h3>No Notifications Found</h3>
+                )}
+
+                {!loading &&
+                    notifications.map((item) => (
+
+                        <NotificationCard
+                            key={item.ID}
+                            notification={item}
+                        />
+
+                    ))
+                }
+
+            </div>
+
+        </>
+
+    );
+
 }
+
+export default NotificationsPage;

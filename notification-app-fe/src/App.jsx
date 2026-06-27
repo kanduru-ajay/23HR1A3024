@@ -1,11 +1,7 @@
-import Home from "./pages/Home";
+import NotificationsPage from "./pages/NotificationsPage";
 
 function App() {
-    return (
-        <div>
-            <Home />
-        </div>
-    );
+  return <NotificationsPage />;
 }
 
 export default App;

@@ -1,20 +1,54 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
-const filters = ["All", "Placement", "Result", "Event"];
+function NotificationFilter({ value, onChange }) {
 
-export function NotificationFilter({ value, onChange }) {
   return (
-    <ToggleButtonGroup
-      value={value}
-      exclusive
-      size="small"
-      sx={{ flexWrap: "wrap", gap: 0.5 }}
+
+    <FormControl
+      sx={{
+        width: 220,
+      }}
     >
-      {filters.map((type) => (
-        <ToggleButton value={type} sx={{ textTransform: "none", px: 2 }}>
-          {type}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
+
+      <InputLabel>
+
+        Filter
+
+      </InputLabel>
+
+      <Select
+        value={value}
+        label="Filter"
+        onChange={(e) => onChange(e.target.value)}
+      >
+
+        <MenuItem value="">
+          All Notifications
+        </MenuItem>
+
+        <MenuItem value="Placement">
+          Placement
+        </MenuItem>
+
+        <MenuItem value="Result">
+          Result
+        </MenuItem>
+
+        <MenuItem value="Event">
+          Event
+        </MenuItem>
+
+      </Select>
+
+    </FormControl>
+
   );
+
 }
+
+export default NotificationFilter;

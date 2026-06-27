@@ -1,27 +1,30 @@
-import { Pagination, Stack } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 function PaginationComponent({
-  count,
   page,
+  count,
   onChange,
 }) {
+
   return (
+
     <Stack
-      spacing={2}
-      sx={{
-        mt: 4,
-        mb: 4,
-        alignItems: "center",
-      }}
+      mt={4}
+      alignItems="center"
     >
+
       <Pagination
-        count={count}
         page={page}
+        count={count}
         color="primary"
-        onChange={(_, value) => onChange(value)}
+        onChange={(e, value) => onChange(value)}
       />
+
     </Stack>
+
   );
+
 }
 
 export default PaginationComponent;
